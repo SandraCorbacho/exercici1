@@ -111,6 +111,13 @@ if(isset($data)){
     
 }else{
    echo "<p> Este titulo no está en nuestra base de datos</p>";
+   echo "<p> Los titulos disponibles són: </p>";
+   echo "<ul>";
+   foreach($datos as $film){
+    echo "<li> ".$film['name']." </li>";
+
+   }
+   echo "<ul>";
 }
     
   ?>

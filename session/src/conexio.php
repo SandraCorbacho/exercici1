@@ -9,7 +9,6 @@ function connectSqlite(String $bdName){
     
     }catch(PDOException $e){
         echo $e->getMessage();
-        die;
     }
     return $db;
     

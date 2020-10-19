@@ -51,8 +51,9 @@ function readData(PDO $db, $nameuser){
 function Insertschema(PDO $db, array $data){
     if(is_array($data)){
         $date = date('Y/m/d') .' '. date('h:i:sa');
+        $pass = password_hash($data['password'],PASSWORD_BCRYPT,['cost' => 4]);
     
-                $command = "INSERT INTO users(nombre, password,lastlogin) VALUES('{$data['nombre']}','{$data['password']}','{$date}');";
+                $command = "INSERT INTO users(nombre, password,lastlogin) VALUES('{$data['nombre']}','{$pass}','{$date}');";
 
                 try{
                     
@@ -67,14 +68,17 @@ function Insertschema(PDO $db, array $data){
     
 }
 function searchSchema($base,$name, $pass){
-    $sql = "SELECT * FROM users where nombre=:name and password = :pass";
+  
+    $sql = "SELECT password FROM users where nombre=:name";
     //$sql = "SELECT * FROM users";
     $stmt = $base->prepare($sql);
     //si ponemos un where
-    $stmt->execute([':name'=>$name,':pass'=>$pass]);
+    $stmt->execute([':name'=>$name]);
     //$stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    if(count($data)>0){
+    print_r($data);
+    
+    if(password_verify($pass,$data[0]['password'])){
         return true;
     }else{
         return false;

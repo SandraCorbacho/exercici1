@@ -1,13 +1,10 @@
 <?php
-
 ini_set('display_errors','On');
 session_start();
 require __DIR__.'/src/conexio.php';
 require __DIR__.'/src/schema.php';
 //conexion
 $dbname = 'act1';
-$userdb = 'prova';
-$passdb = 'linuxlinux';
 $base = connectSqlite($dbname);
 
 if(isset($_POST['contrasena2'])){
