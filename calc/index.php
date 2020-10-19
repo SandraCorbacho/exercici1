@@ -100,6 +100,8 @@ function primo(int $num):bool {
         </select>
         <input type="submit" value='calcular'>
     </form>
+
+    <br><br><a href='/M8/Exercici1'>Tornar</a>
     <script>
         document.getElementById('options').addEventListener('change', inputs);
         function inputs(){

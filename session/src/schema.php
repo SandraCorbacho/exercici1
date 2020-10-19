@@ -76,7 +76,6 @@ function searchSchema($base,$name, $pass){
     $stmt->execute([':name'=>$name]);
     //$stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    print_r($data);
     
     if(password_verify($pass,$data[0]['password'])){
         return true;

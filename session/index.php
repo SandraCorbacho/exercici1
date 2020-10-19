@@ -5,6 +5,7 @@ require __DIR__.'/src/conexio.php';
 require __DIR__.'/src/schema.php';
 //conexion
 $dbname = 'act1';
+
 $base = connectSqlite($dbname);
 
 if(isset($_POST['contrasena2'])){
@@ -20,7 +21,7 @@ if(isset($_POST['contrasena2'])){
     }
    
 }
-if(isset($_SESSION['user'])||isset($_COOKIE['user']['nombre'])&& $_COOKIE['user']['nombre'] != ""){
+if(isset($_SESSION['user'])||isset($_COOKIE['nombre'])&& $_COOKIE['nombre'] != ""){
     header('Location: src/home.php');
 }
 if(isset($_POST['token'])){
@@ -62,5 +63,6 @@ schemaGenerator($base);
         <input type="submit">
         <a href="register.php">Registrar-se</a>
     </form>
+    <?= "<br><br><a href='/M8/Exercici1'>Tornar</a>"?>
 </body>
 </html>

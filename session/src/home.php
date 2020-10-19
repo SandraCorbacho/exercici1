@@ -29,7 +29,9 @@ if(isset($_SESSION['user'])){
         echo "<p>Última hora de conexió: ".$hora." en la data: ".$dia .". </p>";
     }
     ?>
-    
+    <a href="perfil.php">Perfil d'usuari</a>
     <a href="logout.php">Tancar sessió</a>
+
+    <br><br><a href='/M8/Exercici1'>Tornar al menú</a>
 </body>
 </html>

@@ -119,7 +119,7 @@ if(isset($data)){
    }
    echo "<ul>";
 }
-    
+    echo "<br><br><a href='/M8/Exercici1'>Tornar</a>";
   ?>
 </body>
 </html>
