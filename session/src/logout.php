@@ -1,7 +1,10 @@
 <?php
 session_start();
 session_destroy();
+setcookie("id", null, time()-3600, '/');
+setcookie("nombre", null, time()-3600, '/');
+setcookie("lastlogin", null, time()-3600, '/');
+setcookie("password", null, time()-3600, '/');
 
-setcookie("user", "", time() - 3600);
 header('Location: ../index.php');
 ?>

@@ -12,25 +12,34 @@ $base = connectSqlite($dbname);
 
 if(isset($_POST['contrasena2'])){
     if($_POST['contrasena'] == $_POST['contrasena2']){
-        echo('usuario registrado con -éxito');
+        
         $data = [
             'nombre' => $_POST['usuario'],
             'password' => $_POST['contrasena']
         ];
-        Insertschema($base, $data);
+        if(Insertschema($base, $data)){
+            echo('usuario registrado con éxito');
+        };
     }
    
 }
-if(isset($_SESSION['user'])||isset($_COOKIE['user'])){
+if(isset($_SESSION['user'])||isset($_COOKIE['user']['nombre'])&& $_COOKIE['user']['nombre'] != ""){
     header('Location: src/home.php');
 }
 if(isset($_POST['token'])){
     if(searchSchema($base,$_POST['usuario'], $_POST['contrasena'])){
+        insertDataSchema($base);
         if($_POST['recorda']){
-            setcookie("user", $_POST['usuario'], time() + (86400 * 30), "/");
+            $user = readData($base, $_POST['usuario']);
+        
+            setcookie("id", $user[0]['id'], time() + (86400 * 30), "/");
+            setcookie("nombre", $user[0]['nombre'], time() + (86400 * 30), "/");
+            setcookie("password", $user[0]['password'], time() + (86400 * 30), "/");
+            setcookie("lastlogin", $user[0]['lastlogin'], time() + (86400 * 30), "/");
+            
         }
-        $_SESSION['user'] = $_POST['usuario'];
-        header('Location: src/home.php');
+       $_SESSION['user'] = $_POST['usuario'];
+       header('Location: src/home.php');
     };
 }
 

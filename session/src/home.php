@@ -4,11 +4,14 @@ $user = '';
 if(isset($_SESSION['user'])){
     $user = $_SESSION['user'];
 
-}else if(isset($_COOKIE['user'])){
-    $user = $_COOKIE['user'];
+}else if(isset($_COOKIE['password'])){
+    $user = $_COOKIE['nombre'];
 }else{
     header('Location: ../index.php');
 }
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +22,14 @@ if(isset($_SESSION['user'])){
 </head>
 <body>
     <h1>Ha iniciat Sessió <?=$user?></h1>
+    <?php
+    if(isset($_COOKIE['lastlogin'])){
+        $hora = substr($_COOKIE['lastlogin'],10 ,strlen($_COOKIE['lastlogin']));
+        $dia = substr($_COOKIE['lastlogin'],0,10);
+        echo "<p>Última hora de conexió: ".$hora." en la data: ".$dia .". </p>";
+    }
+    ?>
+    
     <a href="logout.php">Tancar sessió</a>
 </body>
 </html>
